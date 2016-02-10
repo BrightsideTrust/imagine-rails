@@ -19,7 +19,7 @@ module Imagine
     end
 
     def id
-      Presence[read(:id)]
+      Presence[@metadata[:id] || read(:id)]
     end
 
     def size
@@ -181,6 +181,7 @@ module Imagine
     end
 
     def write_metadata
+      write(:id, id)
       write(:size, size)
       write(:content_type, content_type)
       write(:filename, filename)
